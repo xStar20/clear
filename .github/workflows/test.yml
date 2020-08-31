@@ -4,6 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: action/checkout@v2
       - name: show initial iptables
         run: |
           sudo iptables -vnL
@@ -11,9 +13,4 @@ jobs:
       - name: check post action iptables
         run: sudo iptables -vnL
       - name: check
-        run: |
-          count=$(sudo iptables-save | grep '^\-' | wc -l)
-          if [ $count -ne 0 ]; then \
-            echo "ERR! There are $count rule(s) in iptables." \
-            exit 1; \
-          fi
+        run: test/iptables-save-count.sh
