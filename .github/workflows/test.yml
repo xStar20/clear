@@ -1,0 +1,13 @@
+name: Test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show initial iptables
+        run: |
+          sudo iptables -vnL
+      - uses: xStar20/clear@v1
+      - name: check post action iptables
+        run: sudo iptables -vnL
+

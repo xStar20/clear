@@ -1,0 +1,7 @@
+name: "Clear iptables"
+description: "clear everything in iptables"
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/clear.sh
+      shell: bash
