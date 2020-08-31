@@ -9,7 +9,7 @@ jobs:
       - name: show initial iptables
         run: |
           sudo iptables -vnL
-      - uses: xStar20/clear@v1
+      - uses: xStar20/clear@master
       - name: check post action iptables
         run: sudo iptables -vnL
       - name: check
