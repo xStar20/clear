@@ -10,4 +10,10 @@ jobs:
       - uses: xStar20/clear@v1
       - name: check post action iptables
         run: sudo iptables -vnL
-
+      - name: check
+        run: |
+          count=$(sudo iptables-save | grep '^\-' | wc -l)
+          if [ $count -ne 0 ]; then \
+            echo "ERR! There are $count rule(s) in iptables." \
+            exit 1; \
+          fi
